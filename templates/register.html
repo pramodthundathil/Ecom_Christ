@@ -1,0 +1,47 @@
+{% extends 'index.html' %}
+{% block content %}
+
+<style>
+    .form-container {
+        width: 60%;
+        padding: 20px;
+        border: .5px solid gray;
+        border-radius: 10px;
+        text-align: center;
+        margin: auto;
+
+    }
+
+    .form-container input {
+        width: 100%;
+        padding: 5px;
+        border: 1px solid black;
+        border: 6px;
+    }
+
+    .form-container input:focus {
+        border: .5px solid rgb(247, 247, 44);
+        outline: none;
+    }
+</style>
+
+<div class="container mt-5 mb-5">
+    <div class="form-container">
+        <h3>Register</h3>
+        <h6 class="text-danger">{{form.errors}}</h6>
+        <form method="post">
+            {% csrf_token %}
+
+            {% for field in form %}
+            {{field.label}}: <br>
+            {{field}} <br><br>
+
+            {% endfor %}
+            <button type="submit" class="btn btn-primary">Register</button>
+        </form>
+        <br><br>
+        <span>Have An Account click <a href="{%url 'SignIn' %}">Here</a></span>
+    </div>
+
+</div>
+{% endblock %}

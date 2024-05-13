@@ -1,0 +1,75 @@
+{% extends 'merchantindex.html' %}
+{% block content %}
+
+
+<div class="container mt-5">
+    <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        Add Product
+      </button>
+      
+      <h3 class="text-danger">{{form.errors}}</h3>
+
+        <h3 class="mt-5">Product Details</h3>
+        <div class="table-container">
+          <table class="table table-stripped">
+            <tr>
+              <th>Sl No.</th>
+              <th>Product Name</th>
+              <th>Product Price</th>
+              <th>Product Description</th>
+              <th>Product Stock</th>
+              <th>Product Image</th>
+              <th>Action</th>
+            </tr>
+
+            {% for item in product %}
+            <tr>
+              <td>{{forloop.counter}}</td>
+              <td>{{item.Product_Name}}</td>
+              <td>{{item.Product_Price}}</td>
+              <td>{{item.Product_Discription}}</td>
+              <td>{{item.Product_Stock}}</td>
+              <td>
+                <img src="{{item.Product_Image.url}}" width="100px" alt="">
+              </td>
+              <td><a href="{%url 'DeleteProduct' item.id %}" onclick="return confirm('Do you want to Delete item ?')" class="btn btn-outline-danger btn-sm">Delete</a></td>
+            </tr>
+            {% endfor %}
+
+          </table>
+        </div>
+
+</div>
+<!-- Button trigger modal -->
+
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Add Product</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+           
+
+            {% for field in form %}
+            {{field.label}}: <br>
+            {{field}} <br>
+
+            {% endfor %}
+          
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">Save changes</button>
+        </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}

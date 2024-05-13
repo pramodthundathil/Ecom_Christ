@@ -1,0 +1,23 @@
+{% extends 'merchantindex.html' %}
+{% block content %}
+
+<style>
+    .content{
+        width:50%;
+        margin: auto;
+        margin-top: 100px;
+        border: 1px solid;
+        padding: 20px;
+    }
+</style>
+
+<div class="container">
+    <div class="content">
+        Name: {{add.firstname}} {{add.lastname}}
+        <br><br>
+        Address: {{add.address}}, {{add.city}}, {{add.country}}
+
+    </div>
+</div>
+
+{% endblock %}

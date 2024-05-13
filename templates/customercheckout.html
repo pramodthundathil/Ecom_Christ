@@ -1,0 +1,28 @@
+{% extends 'merchantindex.html' %}
+{% block content %}
+<div class="container">
+    <h3>Product CheckOuts </h3>
+    <table class="table">
+        <tr>
+            <th>Product Name</th>
+            <th>Product Quantity</th>
+            <th>Product Price</th>
+            <th>Customer</th>
+            <th>Date</th>
+            <th>Status</th>
+            <th>Action</th>
+        </tr>
+        {%  for i in checkout %}
+        <tr>
+            <td>{{i.product.Product_Name}}</td>
+            <td>{{i.items}}</td>
+            <td>{{i.total_price}}</td>
+            <td><a href="{%url 'ViewCustomer' i.user.id %}" class="btn btn-dark">View Customer</a></td>
+            <td>{{i.date}}</td>
+            <td>{{i.delivery_status}}</td>
+            <td></td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+{% endblock %}
